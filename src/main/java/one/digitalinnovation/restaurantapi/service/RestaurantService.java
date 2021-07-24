@@ -1,5 +1,6 @@
 package one.digitalinnovation.restaurantapi.service;
 
+import lombok.AllArgsConstructor;
 import one.digitalinnovation.restaurantapi.dto.request.RestaurantDTO;
 import one.digitalinnovation.restaurantapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.restaurantapi.entity.Restaurant;
@@ -13,16 +14,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RestaurantService {
 
     private RestaurantRepository restaurantRepository;
 
     private final RestaurantMapper restaurantMapper = RestaurantMapper.INSTANCE;
-
-    @Autowired
-    public RestaurantService(RestaurantRepository restaurantRepository) {
-        this.restaurantRepository = restaurantRepository;
-    }
 
     public MessageResponseDTO createRestaurant(RestaurantDTO restaurantDTO) {
         Restaurant restaurantToSave = restaurantMapper.toModel(restaurantDTO);

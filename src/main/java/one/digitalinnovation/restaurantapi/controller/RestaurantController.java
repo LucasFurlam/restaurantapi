@@ -1,5 +1,6 @@
 package one.digitalinnovation.restaurantapi.controller;
 
+import lombok.AllArgsConstructor;
 import one.digitalinnovation.restaurantapi.dto.request.RestaurantDTO;
 import one.digitalinnovation.restaurantapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.restaurantapi.exception.RestaurantNotFoundException;
@@ -13,15 +14,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/restaurants")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class RestaurantController {
 
     private RestaurantService restaurantService;
-
-    @Autowired
-    public RestaurantController(RestaurantService restaurantService) {
-        this.restaurantService = restaurantService;
-    }
-
+    
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createRestaurant(@RequestBody @Valid RestaurantDTO restaurantDTO) {
