@@ -38,4 +38,10 @@ public class RestaurantController {
         return restaurantService.findById(id);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable Long id) throws RestaurantNotFoundException {
+        restaurantService.delete(id);
+    }
+
 }

@@ -42,8 +42,17 @@ public class RestaurantService {
     }
 
     public RestaurantDTO findById(Long id) throws RestaurantNotFoundException {
-        Restaurant restaurant = restaurantRepository.findById(id)
-                .orElseThrow(() -> new RestaurantNotFoundException(id));
+        Restaurant restaurant = verifyIfExists(id);
         return restaurantMapper.toDTO(restaurant);
+    }
+
+    public void delete(Long id) throws RestaurantNotFoundException {
+        verifyIfExists(id);
+        restaurantRepository.deleteById(id);
+    }
+
+    private Restaurant verifyIfExists(Long id) throws RestaurantNotFoundException {
+        return restaurantRepository.findById(id)
+                .orElseThrow(() -> new RestaurantNotFoundException(id));
     }
 }
