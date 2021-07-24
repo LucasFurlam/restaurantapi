@@ -1,8 +1,8 @@
 package one.digitalinnovation.restaurantapi.controller;
 
-import one.digitalinnovation.restaurantapi.dto.MessageResponseDTO;
 import one.digitalinnovation.restaurantapi.dto.request.RestaurantDTO;
-import one.digitalinnovation.restaurantapi.entity.Restaurant;
+import one.digitalinnovation.restaurantapi.dto.response.MessageResponseDTO;
+import one.digitalinnovation.restaurantapi.exception.RestaurantNotFoundException;
 import one.digitalinnovation.restaurantapi.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +31,11 @@ public class RestaurantController {
     @GetMapping
     public List<RestaurantDTO> listAll() {
         return restaurantService.listAll();
+    }
+
+    @GetMapping("/{id}")
+    public RestaurantDTO findById(@PathVariable Long id) throws RestaurantNotFoundException {
+        return restaurantService.findById(id);
     }
 
 }

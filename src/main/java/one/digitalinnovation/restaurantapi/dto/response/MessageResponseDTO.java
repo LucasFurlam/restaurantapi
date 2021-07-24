@@ -1,4 +1,4 @@
-package one.digitalinnovation.restaurantapi.dto;
+package one.digitalinnovation.restaurantapi.dto.response;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,8 +1,9 @@
 package one.digitalinnovation.restaurantapi.service;
 
-import one.digitalinnovation.restaurantapi.dto.MessageResponseDTO;
 import one.digitalinnovation.restaurantapi.dto.request.RestaurantDTO;
+import one.digitalinnovation.restaurantapi.dto.response.MessageResponseDTO;
 import one.digitalinnovation.restaurantapi.entity.Restaurant;
+import one.digitalinnovation.restaurantapi.exception.RestaurantNotFoundException;
 import one.digitalinnovation.restaurantapi.mapper.RestaurantMapper;
 import one.digitalinnovation.restaurantapi.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,11 @@ public class RestaurantService {
         return allRestaurants.stream()
                 .map(restaurantMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public RestaurantDTO findById(Long id) throws RestaurantNotFoundException {
+        Restaurant restaurant = restaurantRepository.findById(id)
+                .orElseThrow(() -> new RestaurantNotFoundException(id));
+        return restaurantMapper.toDTO(restaurant);
     }
 }
