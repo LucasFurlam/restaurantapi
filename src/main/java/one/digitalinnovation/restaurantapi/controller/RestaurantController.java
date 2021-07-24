@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/restaurants")
@@ -25,6 +26,11 @@ public class RestaurantController {
     @ResponseStatus(HttpStatus.CREATED)
     public MessageResponseDTO createRestaurant(@RequestBody @Valid RestaurantDTO restaurantDTO) {
         return restaurantService.createRestaurant(restaurantDTO);
+    }
+
+    @GetMapping
+    public List<RestaurantDTO> listAll() {
+        return restaurantService.listAll();
     }
 
 }

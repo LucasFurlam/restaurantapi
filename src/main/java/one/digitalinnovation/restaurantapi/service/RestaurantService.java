@@ -8,6 +8,9 @@ import one.digitalinnovation.restaurantapi.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class RestaurantService {
 
@@ -28,5 +31,12 @@ public class RestaurantService {
                 .builder()
                 .message("Create restaurant with ID " + savedRestaurant.getId())
                 .build();
+    }
+
+    public List<RestaurantDTO> listAll() {
+        List<Restaurant> allRestaurants = restaurantRepository.findAll();
+        return allRestaurants.stream()
+                .map(restaurantMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }
