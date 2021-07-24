@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import one.digitalinnovation.restaurantapi.entity.Cookery;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -30,6 +29,6 @@ public class RestaurantDTO {
 
     @Valid
     @NotNull
-    private List<Cookery> cookeries;
+    private List<CookeryDTO> cookeries;
 
 }

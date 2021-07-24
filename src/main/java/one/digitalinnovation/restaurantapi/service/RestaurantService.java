@@ -25,7 +25,7 @@ public class RestaurantService {
         Restaurant restaurantToSave = restaurantMapper.toModel(restaurantDTO);
 
         Restaurant savedRestaurant = restaurantRepository.save(restaurantToSave);
-        return createMessageResponse(savedRestaurant.getId(), "Create restaurant with ID ");
+        return createMessageResponse(savedRestaurant.getId(), "Created restaurant with ID ");
     }
 
     public List<RestaurantDTO> listAll() {
