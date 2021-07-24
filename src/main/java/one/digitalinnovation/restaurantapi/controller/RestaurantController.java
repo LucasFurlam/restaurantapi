@@ -1,16 +1,29 @@
 package one.digitalinnovation.restaurantapi.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import one.digitalinnovation.restaurantapi.dto.MessageResponseDTO;
+import one.digitalinnovation.restaurantapi.entity.Restaurant;
+import one.digitalinnovation.restaurantapi.repository.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/restaurant")
+@RequestMapping("/api/v1/restaurants")
 public class RestaurantController {
 
-    @GetMapping
-    public String getRestaurant() {
-        return "API Test!";
+    private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    public RestaurantController(RestaurantRepository restaurantRepository) {
+        this.restaurantRepository = restaurantRepository;
+    }
+
+    @PostMapping
+    public MessageResponseDTO createRestaurant(@RequestBody Restaurant restaurant) {
+        Restaurant savedRestaurant = restaurantRepository.save(restaurant);
+        return MessageResponseDTO
+                .builder()
+                .message("Create restaurant with ID " + savedRestaurant.getId())
+                .build();
     }
 
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Builder
@@ -25,8 +26,7 @@ public class Restaurant {
     @Column(name = "freight_rate", nullable = false)
     private BigDecimal freightRate;
 
-    @ManyToOne
-    @JoinColumn(name = "cookery_id", nullable = false)
-    private Cookery cookery;
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private List<Cookery> cookeries;
 
 }
