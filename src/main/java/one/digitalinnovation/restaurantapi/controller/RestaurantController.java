@@ -38,6 +38,11 @@ public class RestaurantController {
         return restaurantService.findById(id);
     }
 
+    @PutMapping("/{id}")
+    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid RestaurantDTO restaurantDTO) throws RestaurantNotFoundException {
+        return restaurantService.updateById(id, restaurantDTO);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id) throws RestaurantNotFoundException {
