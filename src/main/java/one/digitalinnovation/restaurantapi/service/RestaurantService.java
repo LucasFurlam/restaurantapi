@@ -28,10 +28,7 @@ public class RestaurantService {
         Restaurant restaurantToSave = restaurantMapper.toModel(restaurantDTO);
 
         Restaurant savedRestaurant = restaurantRepository.save(restaurantToSave);
-        return MessageResponseDTO
-                .builder()
-                .message("Create restaurant with ID " + savedRestaurant.getId())
-                .build();
+        return createMessageResponse(savedRestaurant.getId(), "Create restaurant with ID ");
     }
 
     public List<RestaurantDTO> listAll() {
@@ -46,6 +43,15 @@ public class RestaurantService {
         return restaurantMapper.toDTO(restaurant);
     }
 
+    public MessageResponseDTO updateById(Long id, RestaurantDTO restaurantDTO) throws RestaurantNotFoundException {
+        verifyIfExists(id);
+
+        Restaurant restaurantToUpdate = restaurantMapper.toModel(restaurantDTO);
+
+        Restaurant updatedRestaurant = restaurantRepository.save(restaurantToUpdate);
+        return createMessageResponse(updatedRestaurant.getId(), "Updated restaurant with ID ");
+    }
+
     public void delete(Long id) throws RestaurantNotFoundException {
         verifyIfExists(id);
         restaurantRepository.deleteById(id);
@@ -55,4 +61,12 @@ public class RestaurantService {
         return restaurantRepository.findById(id)
                 .orElseThrow(() -> new RestaurantNotFoundException(id));
     }
+
+    private MessageResponseDTO createMessageResponse(Long id, String message) {
+        return MessageResponseDTO
+                .builder()
+                .message(message + id)
+                .build();
+    }
+
 }
