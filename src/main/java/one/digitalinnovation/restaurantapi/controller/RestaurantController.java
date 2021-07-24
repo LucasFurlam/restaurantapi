@@ -18,11 +18,11 @@ import java.util.List;
 public class RestaurantController {
 
     private RestaurantService restaurantService;
-    
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createRestaurant(@RequestBody @Valid RestaurantDTO restaurantDTO) {
-        return restaurantService.createRestaurant(restaurantDTO);
+    public MessageResponseDTO create(@RequestBody @Valid RestaurantDTO restaurantDTO) {
+        return restaurantService.create(restaurantDTO);
     }
 
     @GetMapping
