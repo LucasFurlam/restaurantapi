@@ -6,7 +6,10 @@ The following topics will be developed and addressed:
 * Creating a data model for mapping entities into databases
 * Development of restaurant management operations (Registering, reading, updating and removing restaurants from a system).
 * Relation of each of the above operations with the REST architectural pattern, and the explanation of each of the REST concepts involved during project development.
-* Development of unit tests for functionality validation
+* Testing Conceptual Presentation: The Test Type Pyramid, as well as the importance of each test type during the development cycle.
+* Focus on unit tests: show why it is important to develop these types of tests as part of the software development cycle.
+* Main frameworks for unit testing in Java: JUnit, Mockito and Hamcrest.
+* Development of unit tests for validation of basic functionalities: creation, listing, query by name and restaurant exclusion.
 * Cloud system deployment through Heroku
 
 To run the project on the terminal, type the following command:
